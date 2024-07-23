@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -8,7 +8,7 @@ import { MdEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
 import { FaUser } from 'react-icons/fa';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
-import styles from './Register.module.css'; 
+import styles from './Register.module.css';
 import icons from '../../Images/Icons/icons.svg';
 
 const Register = () => {
@@ -16,7 +16,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-  const [passwordStrength, setPasswordStrength] = useState(0);
+  const [passwordStrength, setPasswordStrength] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -44,13 +44,13 @@ const Register = () => {
 
   const getPasswordStrength = (password) => {
     if (password.length < 6) {
-      return 1; 
+      return 1;
     } else if (password.length < 8) {
-      return 2; 
+      return 2;
     } else if (password.length < 10) {
-      return 3; 
+      return 3;
     } else {
-      return 4; 
+      return 4;
     }
   };
 
@@ -101,6 +101,7 @@ const Register = () => {
                 placeholder="Username"
                 {...formik.getFieldProps('username')}
                 className={styles.inputField}
+                autoComplete="username"
               />
             </div>
             {formik.touched.username && formik.errors.username ? (
@@ -118,6 +119,7 @@ const Register = () => {
                 placeholder="E-mail"
                 {...formik.getFieldProps('email')}
                 className={styles.inputField}
+                autoComplete="email"
               />
             </div>
             {formik.touched.email && formik.errors.email ? (
@@ -136,9 +138,10 @@ const Register = () => {
                 {...formik.getFieldProps('password')}
                 onChange={handlePasswordChange}
                 className={styles.inputField}
+                autoComplete="new-password"
               />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className={styles.eye}>
-                {showPassword ? <VscEyeClosed className={styles.noEyeIcon} /> : <VscEye className={styles.eyeIcon} />}
+                {!showPassword ? <VscEyeClosed className={styles.noEyeIcon} /> : <VscEye className={styles.eyeIcon} />}
               </button>
             </div>
             {formik.touched.password && formik.errors.password ? (
@@ -157,9 +160,10 @@ const Register = () => {
                 {...formik.getFieldProps('repeatPassword')}
                 onChange={handleRepeatPasswordChange}
                 className={styles.inputField}
+                autoComplete="new-password"
               />
               <button type="button" onClick={() => setShowRepeatPassword(!showRepeatPassword)} className={styles.eye}>
-                {showRepeatPassword ? <VscEyeClosed className={styles.noEyeIcon} /> : <VscEye className={styles.eyeIcon} />}
+                {!showRepeatPassword ? <VscEyeClosed className={styles.noEyeIcon} /> : <VscEye className={styles.eyeIcon} />}
               </button>
             </div>
             {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
@@ -167,7 +171,7 @@ const Register = () => {
             ) : null}
             {renderStrengthBar()}
           </div>
-{/* 
+          {/* 
           {error && <p className={styles.error}>{error}</p>} */}
 
           <button type="submit" className={styles.registerButton}>Register</button>
