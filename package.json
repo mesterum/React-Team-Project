@@ -2,7 +2,7 @@
   "name": "React-Team-Project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://PustanAlex.github.io/React-Team-Project/",
+  "homepage": "https://mesterum.github.io/React-Team-Project/",
   "type": "module",
   "scripts": {
     "dev": "vite",
