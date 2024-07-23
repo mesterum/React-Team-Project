@@ -2,7 +2,7 @@
   "name": "React-Team-Project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://PustanAlex.github.io/React-Team-Project/",
+  "homepage": "https://mesterum.github.io/React-Team-Project/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.16.3",
